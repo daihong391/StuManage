@@ -1,12 +1,57 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN">
 <head>
-<title>Admin</title>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Admin</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.0-rc.1/angular.min.js"></script>
+	<link rel="stylesheet" href="/css/adminPage.css" />
+	<link rel="stylesheet" href="/css/reset.css" />
 </head>
-    <body>
-    	{{username}}
-   	<br />
-   	{{contents}}
+    <body ng-app="myApp">
+    	<div id="container" ng-controller="DemoController as demo">
+    		<script>
+    			var app=angular.module('myApp', []);
+
+    			app.config(function($interpolateProvider) {
+    				$interpolateProvider.startSymbol('//');
+    				$interpolateProvider.endSymbol('//');
+  			});
+
+    			app.controller('DemoController', function($scope){
+    				$scope.right1=true;
+    				$scope.right2=false;
+    				$scope.basicInfo=function(){
+    					$scope.right1=true;
+    					$scope.right2=false;
+    				}
+    				$scope.addAccount=function(){
+    					$scope.right1=false;
+    					$scope.right2=true;
+    				}
+    			});
+    		</script>
+    		<div id="head">
+    			<p id="title"><span>UW</span>innipeg</p>
+    		</div>
+    		<div id="main">
+    			<div id="left">
+    				<div id="up">
+    					<ul>
+    						<li><span>{{username}}</span></li>
+    						<li class="nav">
+    							<button ng-click="basicInfo()">Basic Information</button>
+    						</li>
+    						<li class="nav">
+    							<button ng-click="addAccount()">Add Account</button>
+    						</li>
+    					</ul>
+    				</div>
+    			</div>
+    			<div id="right1" ng-show="right1">
+    				
+    			</div>
+    			<div id="right2" ng-show="right2"></div>
+    		</div>
+    	</div>
     </body>
 </html>
