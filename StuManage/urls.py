@@ -13,7 +13,7 @@ urlpatterns = patterns('',
     	{'document_root': os.path.join(os.path.dirname(__file__),'templates/css').replace('\\','/') }
     	),
     ( r'^images/(?P<path>.*)$', 'django.views.static.serve',
-            { 'document_root': os.path.join(os.path.dirname(__file__),'templates/css').replace('\\','/') }
+            { 'document_root': os.path.join(os.path.dirname(__file__),'templates/images').replace('\\','/') }
     ),
     ( r'^js/(?P<path>.*)$', 'django.views.static.serve',
             { 'document_root': os.path.join(os.path.dirname(__file__),'templates/scripts').replace('\\','/') }

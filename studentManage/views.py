@@ -1,5 +1,6 @@
-from django.shortcuts import render
 from django.shortcuts import render_to_response
+from django.template import RequestContext
+from .forms import loginForm
 
 # Create your views here.
 def mainpage(request):
@@ -7,6 +8,8 @@ def mainpage(request):
 	if request.method=='POST':
 
 		#redirect to Login Page(student or teacher)
-		return render_to_response('MainPage.html')
+		form=loginForm()
+		return render_to_response('MainPage.html', {'form':form},context_instance=RequestContext(request))
 
-	return render_to_response('MainPage.html')
+	form=loginForm()
+	return render_to_response('MainPage.html', {'form':form},context_instance=RequestContext(request))

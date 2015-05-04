@@ -2,6 +2,7 @@
 	background-color: #CC0000;
 	width: 1002px;
 	height: 600px;
+	margin: 0 auto;
 }
 #main{
 	background-color: #888888;
@@ -15,7 +16,7 @@
 	margin-bottom: 20px;
 }
 .nav{
-	width: 60px;
+	width: 80px;
 	height: 20px;
 	margin-top: 80px;
 	background-color: #AAAAAA;
@@ -25,7 +26,7 @@
 	color: #FFFFFF;
 }
 #loginButton{
-	margin-left: 390px;
+	margin-left: 360px;
 }
 #title{
 	font:  bolder 30px/30px sans-serif;
@@ -35,10 +36,30 @@
 #title span{
 	color: red;
 }
-#middle{
+#middle1{
 	background-color: #BB5500;
 	height: 260px;
 	margin-bottom: 20px;
+}
+#middle2{
+	background-color: red;
+	height: 260px;
+	margin-bottom: 20px;
+}
+.middle-form{
+	background-color: white;
+	width: 300px;
+	height: 120px;
+	margin: auto;
+	position: relative;
+	top: 50px;
+}
+.middle-form h1{
+	font:  bolder 15px/15px sans-serif;
+	text-align: center;
+}
+.middle-form input{
+	margin-left: 200px;
 }
 #foot{
 	background-color: #FF8800;

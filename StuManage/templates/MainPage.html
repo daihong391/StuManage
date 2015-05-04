@@ -1,24 +1,75 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN">
+<!doctype html>
+<html lang="en">
 <head>
-<title>Student Manager</title>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="description" content="布尔教育 http://www.itbool.com" />
-<script src="/scripts/angular.js"></script>
-<link rel="stylesheet" href="/css/MainPage.css" />
-<link rel="stylesheet" href="/css/reset.css" />
+	<title>Student Manager</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.0-rc.1/angular.min.js"></script>
+	<link rel="stylesheet" href="/css/MainPage.css" />
+	<link rel="stylesheet" href="/css/reset.css" />
 </head>
-    <body>
-    	<div id="container" ng-app="myApp">
-    		<div id="main" ng-controller="Controller">
+    <body  ng-app="myApp">
+    	<div id="container">
+    		<script>
+  			var app = angular.module('myApp', []);
+
+  			app.config(function($interpolateProvider) {
+    				$interpolateProvider.startSymbol('//');
+    				$interpolateProvider.endSymbol('//');
+  			});
+
+			app.controller('DemoController', function($scope) {
+
+				$scope.middle1=true;
+				$scope.middle2=false;
+				$scope.logIn=function(){
+					$scope.middle1=true;
+					$scope.middle2=false;
+				};
+				$scope.master=function(){
+					$scope.middle1=false;
+					$scope.middle2=true;
+				};
+			});
+
+ 	 		app.directive('hello', function(){
+ 	 			return{
+ 	 				restrict: 'E',
+ 	 				template: '<div>hello</div>'
+ 	 			};
+ 	 		});
+		</script>
+    		<div id="main" ng-controller="DemoController as demo">
     			<div id="head">
     				<p id="title"><span>UW</span>innipeg</p>
-    				<div class="nav" id="loginButton" log-in>Log In</div>
-    				<div class="nav" main-menu>Main Menu</div>
-    				<div class="nav" my-comments>Comments</div>
-    				<div class="nav" contact-us>Contact Us</div>
+    				<button class="nav" id="loginButton" ng-click="logIn()">Log In</button>
+    				<button class="nav" ng-click="master()">Master</button>
     			</div>
-    			<div id="middle"></div>
+    			<div id="middle1" ng-show="middle1">
+    				<div class="middle-form">
+    					<form action="/mainpage/" method="POST" >
+    						{% csrf_token %}
+    						<h1>Student/Teacher Login Page</h1>
+    						<br />
+    						{{form.username}}
+    						{{form.passwd}}
+    						<br />
+    						<input type="submit" value=" Log in" size="15" />
+    					</form>
+    				</div>
+    			</div>
+    			<div id="middle2" ng-show="middle2">
+    				<div class="middle-form">
+    					<form action="/mainpage/" method="POST" >
+    						{% csrf_token %}
+						<h1>System Administer Login Page</h1>
+						<br />
+    						{{form.username}}
+    						{{form.passwd}}
+    						<br />
+    						<input type="submit" value=" Log in" size="15" />
+    					</form>
+    				</div>
+    			</div>
     			<div id="foot"></div>
     		</div>
     	</div>
