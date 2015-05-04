@@ -46,11 +46,28 @@
 	width: 852px;
 	height: 520px;
 	float: left;
-	background-color: blue;
+}
+#changePassword{
+	width: 300px;
+	height: 150px;
+	border: 1px solid #FFFFFF;
+	position: relative;
+	top: 100px;
+	left: 200px;
+}
+.setPass{
+	margin: 10px 0 10px 0;
+}
+.intro{
+	font: bold 12px/12px serif;
+}
+.PASSWD{
+	height: 20px;
+	width: 150px;
 }
 #right2{
 	width: 852px;
 	height: 520px;
 	float: left;
-	background-color: red;
+	background-color: blue;
 }

@@ -28,6 +28,23 @@
     					$scope.right1=false;
     					$scope.right2=true;
     				}
+
+    				$scope.mess='Passwords are not the same';
+    				$scope.message=false;
+    				$scope.passwd=[
+    					{'origin': ''},
+    					{'new1': ''},
+    					{'new2': ''}
+    				];
+    				$scope.comparePass=function(){
+    					if($scope.passwd.new1==$scope.passwd.new2)
+    						$scope.message=false;
+    					else{
+    						$scope.message=true;
+    					}
+    				}
+    				$scope.$watch('passwd.new1', $scope.comparePass);
+    				$scope.$watch('passwd.new2', $scope.comparePass);
     			});
     		</script>
     		<div id="head">
@@ -48,7 +65,26 @@
     				</div>
     			</div>
     			<div id="right1" ng-show="right1">
-    				
+    				<div id="changePassword">
+    					<form action="\changePasswd\" name="changePasswd" method="POST">
+    						<div ng-show='message'>//mess//</div>
+    						<div class="setPass">
+    							<span class="intro">Original Password: </span>
+    							<input type="password"  class="PASSWD" name="originPasswd" ng-model="passwd.origin" placeholder="Original Password" required />
+    						</div>
+    						<div class="setPass">
+    							<span class="intro">New Password: </span>
+    							<input type="password"  class="PASSWD" ng-model="passwd.new1" placeholder="new Password" required />
+    						</div>
+    						<div class="setPass">
+    							<span class="intro">New Password Again: </span>
+    							<input type="password"  class="PASSWD" ng-model="passwd.new2" placeholder="new Password Again" required />
+    						</div>
+    						<div class="setPass">
+    							<input type="submit" value="Submit" />
+    						</div>
+    					</form>
+    				</div>
     			</div>
     			<div id="right2" ng-show="right2"></div>
     		</div>
