@@ -21,3 +21,20 @@ def mainpage(request):
 
 	form=loginForm()
 	return render_to_response('MainPage.html', {'form':form},context_instance=RequestContext(request))
+
+# Change Administer password
+def changePasswd(request):
+	username=request.POST.get('username')
+	orgPasswd=request.POST.get('originPasswd')
+	newPasswd=request.POST.get('newpasswd1')
+	MESSAGE=''
+	if Adminer.objects.filter(username=username):
+		if Adminer.objects.filter(password=orgPasswd):
+			p=Adminer.objects.get(username=username)
+			p.password=newPasswd
+			p.save()
+			MESSAGE='Password Changed'
+		else:
+			MESSAGE='Wrong Password'
+
+	return render_to_response('adminPage.html', {'MESSAGE':MESSAGE, 'username':username},context_instance=RequestContext(request))

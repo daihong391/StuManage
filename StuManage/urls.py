@@ -1,6 +1,6 @@
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
-from studentManage.views import mainpage
+from studentManage.views import mainpage, changePasswd
 import settings,os
 
 urlpatterns = patterns('',
@@ -8,6 +8,7 @@ urlpatterns = patterns('',
     # url(r'^$', 'StuManage.views.home', name='home'),
     # url(r'^blog/', include('blog.urls')),
     (r'^mainpage/$', mainpage),
+    (r'^changePasswd/$', changePasswd),
 
     (r'^css/(?P<path>.*)$','django.views.static.serve',
     	{'document_root': os.path.join(os.path.dirname(__file__),'templates/css').replace('\\','/') }

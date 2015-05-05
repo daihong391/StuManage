@@ -66,20 +66,23 @@
     			</div>
     			<div id="right1" ng-show="right1">
     				<div id="changePassword">
-    					<form action="\changePasswd\" name="changePasswd" method="POST">
+    					<form action="/changePasswd/" name="changePasswd" method="POST">
+    						{% csrf_token %}
     						<div ng-show='message'>//mess//</div>
+    						{{MESSAGE}}
     						<div class="setPass">
     							<span class="intro">Original Password: </span>
     							<input type="password"  class="PASSWD" name="originPasswd" ng-model="passwd.origin" placeholder="Original Password" required />
     						</div>
     						<div class="setPass">
     							<span class="intro">New Password: </span>
-    							<input type="password"  class="PASSWD" ng-model="passwd.new1" placeholder="new Password" required />
+    							<input type="password"  class="PASSWD" name="newpasswd1" ng-model="passwd.new1" placeholder="new Password" required />
     						</div>
     						<div class="setPass">
     							<span class="intro">New Password Again: </span>
-    							<input type="password"  class="PASSWD" ng-model="passwd.new2" placeholder="new Password Again" required />
+    							<input type="password"  class="PASSWD" name="newpasswd2" ng-model="passwd.new2" placeholder="new Password Again" required />
     						</div>
+    						<input type="hidden" name="username" value="{{username}}" />
     						<div class="setPass">
     							<input type="submit" value="Submit" />
     						</div>
