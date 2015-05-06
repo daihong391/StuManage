@@ -1,3 +1,4 @@
+
 # Course Selection System
 
 ## 1. Instructions
@@ -388,3 +389,53 @@ Logging into this account, the administer can change his own password, add other
         </td>
     </tr>
 </table>
+
+## 3. Steps for Running Project
+### 3.1 Download Project from Github
+* Select a folder you want to store the project "StuManage"
+* Run the "Git Bash"
+* Enter "git clone git@github.com:daihong391/StuManage.git"
+
+### 3.2 Creating an Administer Account
+* Open Command Prompt Window
+* Enter the document which you store the cloned project "StuManage" from Github
+* Continue to enter this project, and then input "python manage.py shell"
+* Enter "from studentManage.models import Adminer" to invoke the database of administer
+* user following two command to create an account:
+    * "p=Adminer(username='HONG@126.com', password='111111')"
+    * "p.save()"
+
+### 3.3 Starting Server
+* Enter "exit()" to quit shell
+* Input "python manage.py runserver" to start the Server
+
+### 3.4 Running project
+* Open a browser, and input the link "127.0.0.1:8000/mainpage/"
+* The main page is divided into two parts, Figure 3 and  
+  Figure 4.
+#### Figure 3:
+![Main Page](https://github.com/daihong391/StuManage/raw/master/images/mainPage2.png)
+#### Figure 4
+![Main Page](https://github.com/daihong391/StuManage/raw/master/images/mainPage1.png)
+
+* By clicking the bellowing two buttons you can change between each other.
+#### Figure 7:
+![User](https://github.com/daihong391/StuManage/raw/master/images/userLoginButton.PNG)
+#### Figure 8:
+![User](https://github.com/daihong391/StuManage/raw/master/images/administerLoginButton.PNG)
+
+#### 3.4.1 Administer Part
+* Entering the correct username and password, you will enter the administer page, as  
+  Figure 5 and 6.
+
+#### Figure 5:
+![Admin Page](https://github.com/daihong391/StuManage/raw/master/images/adminChangePassword.PNG)
+
+#### Figure 6:
+![Admin Page](https://github.com/daihong391/StuManage/raw/master/images/adminCreatingAccounts.PNG)
+
+* In this part, you can change the password for administer in Figure 5.
+* You can also create account for other administer, teacher and student.
+* By clicking the bwllowing two buttons, you can switch between two figures.
+#### Figure 9:
+![Admin Page](https://github.com/daihong391/StuManage/raw/master/images/administerManageButton.PNG)
