@@ -24,9 +24,30 @@ def mainpage(request):
 				courseList.append(course)
 			course_list=simplejson.dumps(courseList)
 
+			#obtain all administer
+			adminList=[]
+			adminers=Adminer.objects.all().values_list('username', flat=True)
+			for adminer in adminers:
+				adminList.append(adminer)
+			adminer_list=simplejson.dumps(adminList)
+
+			#obtain all teacher
+			teacherList=[]
+			teachers=Teacher.objects.all().values_list('teacherId', flat=True)
+			for teacher in teachers:
+				teacherList.append(teacher)
+			teacher_list=simplejson.dumps(teacherList)
+
+			#obtain all student
+			studentList=[]
+			students=Student.objects.all().values_list('studentId', flat=True)
+			for student in students:
+				studentList.append(student)
+			student_list=simplejson.dumps(studentList)
+
 			if Adminer.objects.filter(username=username):
 				if Adminer.objects.filter(password=passwd):
-					return render_to_response('adminPage.html', {'username':username, 'courseList':course_list},context_instance=RequestContext(request))
+					return render_to_response('adminPage.html', {'username':username, 'courseList':course_list, 'adminerList':adminer_list, 'teacherList':teacher_list, 'studentList':student_list},context_instance=RequestContext(request))
 
 	form=loginForm()
 	return render_to_response('MainPage.html', {'form':form},context_instance=RequestContext(request))
@@ -37,6 +58,35 @@ def changePasswd(request):
 	orgPasswd=request.POST.get('originPasswd')
 	newPasswd=request.POST.get('newpasswd1')
 	MESSAGE=''
+
+	#obtain all the courses name
+	courseList=[]
+	courses=Course.objects.all().values_list('courseName', flat=True)
+	for course in courses:
+		courseList.append(course)
+	course_list=simplejson.dumps(courseList)
+
+	#obtain all administer
+	adminList=[]
+	adminers=Adminer.objects.all().values_list('username', flat=True)
+	for adminer in adminers:
+		adminList.append(adminer)
+	adminer_list=simplejson.dumps(adminList)
+
+	#obtain all teacher
+	teacherList=[]
+	teachers=Teacher.objects.all().values_list('teacherId', flat=True)
+	for teacher in teachers:
+		teacherList.append(teacher)
+	teacher_list=simplejson.dumps(teacherList)
+
+	#obtain all student
+	studentList=[]
+	students=Student.objects.all().values_list('studentId', flat=True)
+	for student in students:
+		studentList.append(student)
+	student_list=simplejson.dumps(studentList)
+
 	if Adminer.objects.filter(username=username):
 		if Adminer.objects.filter(password=orgPasswd):
 			p=Adminer.objects.get(username=username)
@@ -46,7 +96,7 @@ def changePasswd(request):
 		else:
 			MESSAGE='Wrong Password'
 
-	return render_to_response('adminPage.html', {'MESSAGE':MESSAGE, 'username':username},context_instance=RequestContext(request))
+	return render_to_response('adminPage.html', {'MESSAGE':MESSAGE, 'username':username, 'courseList':course_list, 'adminerList':adminer_list, 'teacherList':teacher_list, 'studentList':student_list},context_instance=RequestContext(request))
 
 #add account for administer
 def addAccount1(request):
@@ -60,6 +110,28 @@ def addAccount1(request):
 	for course in courses:
 		courseList.append(course)
 	course_list=simplejson.dumps(courseList)
+
+	#obtain all administer
+	adminList=[]
+	adminers=Adminer.objects.all().values_list('username', flat=True)
+	for adminer in adminers:
+		adminList.append(adminer)
+	adminer_list=simplejson.dumps(adminList)
+
+	#obtain all teacher
+	teacherList=[]
+	teachers=Teacher.objects.all().values_list('teacherId', flat=True)
+	for teacher in teachers:
+		teacherList.append(teacher)
+	teacher_list=simplejson.dumps(teacherList)
+
+	#obtain all student
+	studentList=[]
+	students=Student.objects.all().values_list('studentId', flat=True)
+	for student in students:
+		studentList.append(student)
+	student_list=simplejson.dumps(studentList)
+
 	MESSAGE=''
 	#add account
 	if Adminer.objects.filter(username=administerName).count()==0:
@@ -69,7 +141,7 @@ def addAccount1(request):
 	else:
 		MESSAGE='Username existed'
 
-	return render_to_response('adminPage.html', {'MESSAGE1':MESSAGE, 'username':username, 'courseList':course_list},context_instance=RequestContext(request))
+	return render_to_response('adminPage.html', {'MESSAGE1':MESSAGE, 'username':username, 'courseList':course_list, 'adminerList':adminer_list, 'teacherList':teacher_list, 'studentList':student_list},context_instance=RequestContext(request))
 
 #add account for teacher
 def addAccount2(request):
@@ -85,6 +157,28 @@ def addAccount2(request):
 	for course in courses:
 		courseList.append(course)
 	course_list=simplejson.dumps(courseList)
+
+	#obtain all administer
+	adminList=[]
+	adminers=Adminer.objects.all().values_list('username', flat=True)
+	for adminer in adminers:
+		adminList.append(adminer)
+	adminer_list=simplejson.dumps(adminList)
+
+	#obtain all teacher
+	teacherList=[]
+	teachers=Teacher.objects.all().values_list('teacherId', flat=True)
+	for teacher in teachers:
+		teacherList.append(teacher)
+	teacher_list=simplejson.dumps(teacherList)
+
+	#obtain all student
+	studentList=[]
+	students=Student.objects.all().values_list('studentId', flat=True)
+	for student in students:
+		studentList.append(student)
+	student_list=simplejson.dumps(studentList)
+
 	courseSelect=Course.objects.all().get(courseName=courseName)
 	MESSAGE=''
 	#add account
@@ -95,7 +189,7 @@ def addAccount2(request):
 	else:
 		MESSAGE='Username existed'
 
-	return render_to_response('adminPage.html', {'MESSAGE2':MESSAGE, 'username':username, 'courseList':course_list},context_instance=RequestContext(request))
+	return render_to_response('adminPage.html', {'MESSAGE2':MESSAGE, 'username':username, 'courseList':course_list, 'adminerList':adminer_list, 'teacherList':teacher_list, 'studentList':student_list},context_instance=RequestContext(request))
 
 #add account for student
 def addAccount3(request):
@@ -111,6 +205,28 @@ def addAccount3(request):
 	for course in courses:
 		courseList.append(course)
 	course_list=simplejson.dumps(courseList)
+
+	#obtain all administer
+	adminList=[]
+	adminers=Adminer.objects.all().values_list('username', flat=True)
+	for adminer in adminers:
+		adminList.append(adminer)
+	adminer_list=simplejson.dumps(adminList)
+
+	#obtain all teacher
+	teacherList=[]
+	teachers=Teacher.objects.all().values_list('teacherId', flat=True)
+	for teacher in teachers:
+		teacherList.append(teacher)
+	teacher_list=simplejson.dumps(teacherList)
+
+	#obtain all student
+	studentList=[]
+	students=Student.objects.all().values_list('studentId', flat=True)
+	for student in students:
+		studentList.append(student)
+	student_list=simplejson.dumps(studentList)
+
 	courseSelect=Course.objects.all().get(courseName=courseName)
 	MESSAGE=''
 	#add account
@@ -121,4 +237,124 @@ def addAccount3(request):
 	else:
 		MESSAGE='Username existed'
 
-	return render_to_response('adminPage.html', {'MESSAGE3':MESSAGE, 'username':username, 'courseList':course_list},context_instance=RequestContext(request))
+	return render_to_response('adminPage.html', {'MESSAGE3':MESSAGE, 'username':username, 'courseList':course_list, 'adminerList':adminer_list, 'teacherList':teacher_list, 'studentList':student_list},context_instance=RequestContext(request))
+
+#modify password for administer
+def modifyPassword1(request):
+	username=request.POST.get('user1')
+	newPassword=request.POST.get('pass11')
+
+	#obtain all the courses name
+	courseList=[]
+	courses=Course.objects.all().values_list('courseName', flat=True)
+	for course in courses:
+		courseList.append(course)
+	course_list=simplejson.dumps(courseList)
+
+	#obtain all administer
+	adminList=[]
+	adminers=Adminer.objects.all().values_list('username', flat=True)
+	for adminer in adminers:
+		adminList.append(adminer)
+	adminer_list=simplejson.dumps(adminList)
+
+	#obtain all teacher
+	teacherList=[]
+	teachers=Teacher.objects.all().values_list('teacherId', flat=True)
+	for teacher in teachers:
+		teacherList.append(teacher)
+	teacher_list=simplejson.dumps(teacherList)
+
+	#obtain all student
+	studentList=[]
+	students=Student.objects.all().values_list('studentId', flat=True)
+	for student in students:
+		studentList.append(student)
+	student_list=simplejson.dumps(studentList)
+
+	if Adminer.objects.filter(username=username):
+		p=Adminer.objects.get(username=username)
+		p.password=newPassword
+		p.save()
+
+	return render_to_response('adminPage.html', {'username':username, 'courseList':course_list, 'adminerList':adminer_list, 'teacherList':teacher_list, 'studentList':student_list},context_instance=RequestContext(request))
+
+#modify password for teacher
+def modifyPassword2(request):
+	username=request.POST.get('user2')
+	newPassword=request.POST.get('pass21')
+
+	#obtain all the courses name
+	courseList=[]
+	courses=Course.objects.all().values_list('courseName', flat=True)
+	for course in courses:
+		courseList.append(course)
+	course_list=simplejson.dumps(courseList)
+
+	#obtain all administer
+	adminList=[]
+	adminers=Adminer.objects.all().values_list('username', flat=True)
+	for adminer in adminers:
+		adminList.append(adminer)
+	adminer_list=simplejson.dumps(adminList)
+
+	#obtain all teacher
+	teacherList=[]
+	teachers=Teacher.objects.all().values_list('teacherId', flat=True)
+	for teacher in teachers:
+		teacherList.append(teacher)
+	teacher_list=simplejson.dumps(teacherList)
+
+	#obtain all student
+	studentList=[]
+	students=Student.objects.all().values_list('studentId', flat=True)
+	for student in students:
+		studentList.append(student)
+	student_list=simplejson.dumps(studentList)
+
+	if Teacher.objects.filter(teacherId=username):
+		p=Teacher.objects.get(teacherId=username)
+		p.teacherPassword=newPassword
+		p.save()
+
+	return render_to_response('adminPage.html', {'username':username, 'courseList':course_list, 'adminerList':adminer_list, 'teacherList':teacher_list, 'studentList':student_list},context_instance=RequestContext(request))
+
+#modify password for student
+def modifyPassword3(request):
+	username=request.POST.get('user3')
+	newPassword=request.POST.get('pass31')
+
+	#obtain all the courses name
+	courseList=[]
+	courses=Course.objects.all().values_list('courseName', flat=True)
+	for course in courses:
+		courseList.append(course)
+	course_list=simplejson.dumps(courseList)
+
+	#obtain all administer
+	adminList=[]
+	adminers=Adminer.objects.all().values_list('username', flat=True)
+	for adminer in adminers:
+		adminList.append(adminer)
+	adminer_list=simplejson.dumps(adminList)
+
+	#obtain all teacher
+	teacherList=[]
+	teachers=Teacher.objects.all().values_list('teacherId', flat=True)
+	for teacher in teachers:
+		teacherList.append(teacher)
+	teacher_list=simplejson.dumps(teacherList)
+
+	#obtain all student
+	studentList=[]
+	students=Student.objects.all().values_list('studentId', flat=True)
+	for student in students:
+		studentList.append(student)
+	student_list=simplejson.dumps(studentList)
+
+	if Student.objects.filter(studentId=username):
+		p=Student.objects.get(studentId=username)
+		p.studentPassword=newPassword
+		p.save()
+
+	return render_to_response('adminPage.html', {'username':username, 'courseList':course_list, 'adminerList':adminer_list, 'teacherList':teacher_list, 'studentList':student_list},context_instance=RequestContext(request))

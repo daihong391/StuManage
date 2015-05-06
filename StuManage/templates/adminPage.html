@@ -63,6 +63,60 @@
                                                     courses.push({{courseList|safe}}[i]);
                                           }
                                           $scope.courses=courses;
+
+                                          //modifying administer's password
+                                          $scope.notice1="Passwords are not the same"
+                                          $scope.comparePass=function(){
+                                                if($scope.pass11==$scope.pass12)
+                                                        $scope.NOTICE1=false;
+                                                else{
+                                                        $scope.NOTICE1=true;
+                                                }
+                                          }
+                                          $scope.$watch('pass11', $scope.comparePass);
+                                          $scope.$watch('pass12', $scope.comparePass);
+
+                                          var adminers=[];
+                                          for(var i=0; i<{{adminerList|safe}}.length; i++){
+                                                adminers.push({{adminerList|safe}}[i]);
+                                          }
+                                          $scope.adminers=adminers;
+
+                                          // modifying teacher's password
+                                          $scope.notice2="Passwords are not the same"
+                                          $scope.comparePass=function(){
+                                                if($scope.pass21==$scope.pass22)
+                                                        $scope.NOTICE2=false;
+                                                else{
+                                                        $scope.NOTICE2=true;
+                                                }
+                                          }
+                                          $scope.$watch('pass21', $scope.comparePass);
+                                          $scope.$watch('pass22', $scope.comparePass);
+
+                                          var teachers=[];
+                                          for(var i=0; i<{{teacherList|safe}}.length; i++){
+                                            teachers.push({{teacherList|safe}}[i]);
+                                          }
+                                          $scope.teachers=teachers;
+
+                                          // modifying student's password
+                                          $scope.notice3="Passwords are not the same"
+                                          $scope.comparePass=function(){
+                                                if($scope.pass31==$scope.pass32)
+                                                        $scope.NOTICE3=false;
+                                                else{
+                                                        $scope.NOTICE3=true;
+                                                }
+                                          }
+                                          $scope.$watch('pass31', $scope.comparePass);
+                                          $scope.$watch('pass32', $scope.comparePass);
+
+                                          var students=[];
+                                          for(var i=0; i<{{studentList|safe}}.length; i++){
+                                            students.push({{studentList|safe}}[i]);
+                                          }
+                                          $scope.students=students;
     			});
     		</script>
     		<div id="head">
@@ -133,6 +187,28 @@
     							</ul>
     						</form>
     					</div>
+
+                                                    <div class="modifyPassword">
+                                                               <form action="/modifyPassword1/" method="POST">
+                                                                         {% csrf_token %}
+                                                                         <div ng-show="NOTICE1">//notice1//</div>
+                                                                         <div>
+                                                                                    <span>username:</span>
+                                                                                    <select name="user1">
+                                                                                              <option value="//adminer//" ng-repeat="adminer in adminers">
+                                                                                                        //adminer//
+                                                                                              </option>
+                                                                                    </select>
+                                                                         </div>
+                                                                         <div>
+                                                                                   <input type="password" placeholder="New Password" ng-model="pass11" name="pass11" />
+                                                                         </div>
+                                                                         <div>
+                                                                                   <input type="password" placeholder="New Password again" ng-model="pass12" name="pass12" />
+                                                                         </div>
+                                                                         <input type="submit" value="Submit" />
+                                                               </form>
+                                                    </div>
     				</div>
     				<div class="createAccount">
     					<h1>Teacher</h1>
@@ -164,6 +240,28 @@
                                                                          </ul>
                                                                </form>
                                                     </div>
+
+                                                    <div class="modifyPassword">
+                                                               <form action="/modifyPassword2/" method="POST">
+                                                                         {% csrf_token %}
+                                                                         <div ng-show="NOTICE2">//notice2//</div>
+                                                                         <div>
+                                                                                    <span>username:</span>
+                                                                                    <select name="user2">
+                                                                                              <option value="//teacher//" ng-repeat="teacher in teachers">
+                                                                                                        //teacher//
+                                                                                              </option>
+                                                                                    </select>
+                                                                         </div>
+                                                                         <div>
+                                                                                   <input type="password" placeholder="New Password" ng-model="pass21" name="pass21" />
+                                                                         </div>
+                                                                         <div>
+                                                                                   <input type="password" placeholder="New Password again" ng-model="pass22" name="pass22" />
+                                                                         </div>
+                                                                         <input type="submit" value="Submit" />
+                                                               </form>
+                                                    </div>
     				</div>
                                           <div class="createAccount">
                                                     <h1>Student</h1>
@@ -193,6 +291,28 @@
                                                                                                <input type="submit" value="submit" />
                                                                                     </li>
                                                                          </ul>
+                                                               </form>
+                                                    </div>
+
+                                                    <div class="modifyPassword">
+                                                               <form action="/modifyPassword3/" method="POST">
+                                                                         {% csrf_token %}
+                                                                         <div ng-show="NOTICE3">//notice3//</div>
+                                                                         <div>
+                                                                                    <span>username:</span>
+                                                                                    <select name="user3">
+                                                                                              <option value="//student//" ng-repeat="student in students">
+                                                                                                        //student//
+                                                                                              </option>
+                                                                                    </select>
+                                                                         </div>
+                                                                         <div>
+                                                                                   <input type="password" placeholder="New Password" ng-model="pass31" name="pass31" />
+                                                                         </div>
+                                                                         <div>
+                                                                                   <input type="password" placeholder="New Password again" ng-model="pass32" name="pass32" />
+                                                                         </div>
+                                                                         <input type="submit" value="Submit" />
                                                                </form>
                                                     </div>
                                           </div>

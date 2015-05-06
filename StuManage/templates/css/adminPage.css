@@ -92,3 +92,17 @@
 .addAccount li{
 	margin: 5px;
 }
+.modifyPassword{
+	width: 200px;
+	position: relative;
+	top: 160px;
+	left: 20px;
+	border: 2px solid #DDDDDD;
+}
+.modifyPassword div{
+	margin: 2px;
+}
+.modifyPassword span{
+	font: bolder 12px/12px serif;
+	color: #FFCC00;
+}
