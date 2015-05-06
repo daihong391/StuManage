@@ -68,7 +68,7 @@ Logging into this account, the administer can change his own password, add other
             password
         </td>
         <td>
-            password
+            varchar(30)
         </td>
         <td>
             False
@@ -92,9 +92,6 @@ Logging into this account, the administer can change his own password, add other
             Unique
         </td>
         <td>
-            max_length
-        </td>
-        <td>
             default
         </td>
     </tr>
@@ -103,16 +100,12 @@ Logging into this account, the administer can change his own password, add other
             Course Name
         </td>
         <td>
-            varchar
+            varchar(50)
         </td>
         <td>
-            False
         </td>
         <td>
             True
-        </td>
-        <td>
-            50
         </td>
         <td>
             ""
@@ -126,10 +119,7 @@ Logging into this account, the administer can change his own password, add other
             Positive Integer
         </td>
         <td>
-            False
-        </td>
-        <td>
-            False
+            
         </td>
         <td>
             
@@ -146,10 +136,7 @@ Logging into this account, the administer can change his own password, add other
             Positive Integer
         </td>
         <td>
-            False
-        </td>
-        <td>
-            False
+            
         </td>
         <td>
             
@@ -166,10 +153,7 @@ Logging into this account, the administer can change his own password, add other
             DateTime
         </td>
         <td>
-            False
-        </td>
-        <td>
-            False
+            
         </td>
         <td>
             
@@ -186,16 +170,221 @@ Logging into this account, the administer can change his own password, add other
             Positive Integer
         </td>
         <td>
-            False
-        </td>
-        <td>
-            False
+            
         </td>
         <td>
             
         </td>
         <td>
             0
+        </td>
+    </tr>
+</table>
+
+#### 2.2.3 Teacher Table
+<table border="1" cellspacing="0">
+    <tr>
+        <td>
+            Column Name
+        </td>
+        <td>
+            Type
+        </td>
+        <td>
+            NULL
+        </td>
+        <td>
+            Unique
+        </td>
+        <td>
+            default
+        </td>
+        <td>
+            Foreign Key
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Teacher Id
+        </td>
+        <td>
+            varchar(30)
+        </td>
+        <td>
+            
+        </td>
+        <td>
+            True
+        </td>
+        <td>
+            ""
+        </td>
+        <td>
+            
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Teacher Name
+        </td>
+        <td>
+            varchar(30)
+        </td>
+        <td>
+            
+        </td>
+        <td>
+            
+        </td>
+        <td>
+            ""
+        </td>
+        <td>
+           
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Course
+        </td>
+        <td>
+           
+        </td>
+        <td>
+            
+        </td>
+        <td>
+            
+        </td>
+        <td>
+            
+        </td>
+        <td>
+            True
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Teacher Password
+        </td>
+        <td>
+           varchar(30)
+        </td>
+        <td>
+            
+        </td>
+        <td>
+            
+        </td>
+        <td>
+            
+        </td>
+        <td>
+            
+        </td>
+    </tr>
+</table>
+
+#### 2.2.4 Student Table
+<table border="1" cellspacing="0">
+    <tr>
+        <td>
+            Column Name
+        </td>
+        <td>
+            Type
+        </td>
+        <td>
+            NULL
+        </td>
+        <td>
+            Unique
+        </td>
+        <td>
+            default
+        </td>
+        <td>
+            Foreign Key
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Student Id
+        </td>
+        <td>
+            varchar(30)
+        </td>
+        <td>
+            
+        </td>
+        <td>
+            True
+        </td>
+        <td>
+            ""
+        </td>
+        <td>
+            
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Student Name
+        </td>
+        <td>
+            varchar(30)
+        </td>
+        <td>
+            
+        </td>
+        <td>
+            
+        </td>
+        <td>
+            ""
+        </td>
+        <td>
+            
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Course
+        </td>
+        <td>
+            
+        </td>
+        <td>
+            
+        </td>
+        <td>
+            
+        </td>
+        <td>
+            
+        </td>
+        <td>
+            True
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Student Password
+        </td>
+        <td>
+            varchar(30)
+        </td>
+        <td>
+            
+        </td>
+        <td>
+            
+        </td>
+        <td>
+            ""
+        </td>
+        <td>
+            
         </td>
     </tr>
 </table>
