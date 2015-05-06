@@ -45,6 +45,18 @@
     				}
     				$scope.$watch('passwd.new1', $scope.comparePass);
     				$scope.$watch('passwd.new2', $scope.comparePass);
+
+    				//for creating administer account
+    				$scope.message1="Passwords are not the same"
+    				$scope.comparePass=function(){
+    					if($scope.newPassword11==$scope.newPassword12)
+    						$scope.mess1=false;
+    					else{
+    						$scope.mess1=true;
+    					}
+    				}
+    				$scope.$watch('newPassword11', $scope.comparePass);
+    				$scope.$watch('newPassword12', $scope.comparePass);
     			});
     		</script>
     		<div id="head">
@@ -89,7 +101,42 @@
     					</form>
     				</div>
     			</div>
-    			<div id="right2" ng-show="right2"></div>
+    			<div id="right2" ng-show="right2">
+    				<div class="createAccount">
+    					<h1>Administer</h1>
+    					<!-- add account -->
+    					<div class="addAccount">
+    						<form action="/addAccount/" method="POST">
+    							{% csrf_token %}
+    							<ul>
+								<div ng-show="mess1">//message1//</div>
+								{{MESSAGE1}}
+    								<li>
+    									<input type="email" placeholder="email" name="administerName" required />
+    								</li>
+    								<li>
+    									<input type="password" name="newPassword11" ng-model="newPassword11" placeholder="password" required />
+    								</li>
+    								<li>
+    									<input type="password" name="newPassword12" ng-model="newPassword12" placeholder="password" required />
+    								</li>
+    								<input type="hidden" name="username" value="{{username}}" />
+    								<li>
+    									<input type="submit" value="Submit" />
+    								</li>
+    							</ul>
+    						</form>
+    					</div>
+    				</div>
+    				<div class="createAccount">
+    					<h1>Teacher</h1>
+    					<form action="\addAccount\" method="POST"></form>
+    				</div>
+    				<div class="createAccount">
+    					<h1>Student</h1>
+    					<form action="\addAccount\" method="POST"></form>
+    				</div>
+    			</div>
     		</div>
     	</div>
     </body>
