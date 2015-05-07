@@ -30,14 +30,21 @@ the similar interface for user accounts.
 ![Main Page](https://github.com/daihong391/StuManage/raw/master/images/mainPage1.png)
 
 #### 2.1.2 Administer Page
-Logging into this account, the administer can change his own password, add other administer's  
-, student's and teacher's accounts. The details are showing inside the bellowing figures.
+Logging into this account, there are several functions that an administer can manage this system:  
+change own password, add accounts or change password for other users and other administers,    
+delete accounts, and manage courses.
 
 #### Figure 5:
 ![Admin Page](https://github.com/daihong391/StuManage/raw/master/images/adminChangePassword.PNG)
 
 #### Figure 6:
 ![Admin Page](https://github.com/daihong391/StuManage/raw/master/images/adminCreatingAccounts.PNG)
+
+#### Figure 10:
+![Admin Page](https://github.com/daihong391/StuManage/raw/master/images/adminDeleteAccount.PNG)
+
+#### Figure 11:
+![Admin Page](https://github.com/daihong391/StuManage/raw/master/images/adminModifyCourses.PNG)
 
 ### 2.2 Database
 #### 2.2.1 Administer Table
@@ -426,7 +433,7 @@ Logging into this account, the administer can change his own password, add other
 
 #### 3.4.1 Administer Part
 * Entering the correct username and password, you will enter the administer page, as  
-  Figure 5 and 6.
+  Figure 5, 6, 10 and 11.
 
 #### Figure 5:
 ![Admin Page](https://github.com/daihong391/StuManage/raw/master/images/adminChangePassword.PNG)
@@ -434,8 +441,31 @@ Logging into this account, the administer can change his own password, add other
 #### Figure 6:
 ![Admin Page](https://github.com/daihong391/StuManage/raw/master/images/adminCreatingAccounts.PNG)
 
+#### Figure 10:
+![Admin Page](https://github.com/daihong391/StuManage/raw/master/images/adminDeleteAccount.PNG)
+
+#### Figure 11:
+![Admin Page](https://github.com/daihong391/StuManage/raw/master/images/adminModifyCourses.PNG)
+
 * In this part, you can change the password for administer in Figure 5.
-* You can also create account for other administer, teacher and student.
-* By clicking the bwllowing two buttons, you can switch between two figures.
+* You can also create account for other administer, teacher and student, and change their password  
+  in Figure 6.
+* In Figure 10, you can delete accounts for other users and administers except yourself.
+* Figure 11 shows the interface for managing the course database. Inside this page, you can  
+  add a new course, modify it, and delete courses.
+    * Figure 12 is for adding a new course
+    * Figure 13 is for searching a course and modifying it
+    * Figure 14 is for deleting a course
+#### Figure 12:
+![Admin Page](https://github.com/daihong391/StuManage/raw/master/images/adminAddCourse.PNG)
+
+#### Figure 13:
+![Admin Page](https://github.com/daihong391/StuManage/raw/master/images/adminSearchAddCourses.PNG)
+
+#### Figure 14:
+![Admin Page](https://github.com/daihong391/StuManage/raw/master/images/adminDeleteCourses.PNG)
+
+* By clicking the bwllowing buttons, you can switch among those four pages.
 #### Figure 9:
 ![Admin Page](https://github.com/daihong391/StuManage/raw/master/images/administerManageButton.PNG)
+
