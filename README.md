@@ -467,6 +467,7 @@ delete accounts, and manage courses.
 ![Admin Page](https://github.com/daihong391/StuManage/raw/master/images/adminDeleteCourses.PNG)
 
 * By clicking the bwllowing buttons, you can switch among those four pages.
+
 #### Figure 9:
 ![Admin Page](https://github.com/daihong391/StuManage/raw/master/images/administerManageButton.PNG)
 
