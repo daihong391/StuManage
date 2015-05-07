@@ -456,6 +456,7 @@ delete accounts, and manage courses.
     * Figure 12 is for adding a new course
     * Figure 13 is for searching a course and modifying it
     * Figure 14 is for deleting a course
+
 #### Figure 12:
 ![Admin Page](https://github.com/daihong391/StuManage/raw/master/images/adminAddCourse.PNG)
 
