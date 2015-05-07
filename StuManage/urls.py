@@ -1,6 +1,6 @@
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
-from studentManage.views import mainpage, changePasswd, addAccount1, addAccount2, addAccount3, modifyPassword1, modifyPassword2, modifyPassword3, deleteAdmin, deleteTeacher, deleteStudent
+from studentManage.views import mainpage, changePasswd, addAccount1, addAccount2, addAccount3, modifyPassword1, modifyPassword2, modifyPassword3, deleteAdmin, deleteTeacher, deleteStudent, modifyCourse1, modifyCourse2, modifyCourse21, deleteCourse
 import settings,os
 
 urlpatterns = patterns('',
@@ -18,6 +18,10 @@ urlpatterns = patterns('',
     (r'^deleteAdmin/$', deleteAdmin),
     (r'^deleteTeacher/$', deleteTeacher),
     (r'^deleteStudent/$', deleteStudent),
+    (r'^modifyCourse1/$', modifyCourse1),
+    (r'^modifyCourse2/$', modifyCourse2),
+    (r'^modifyCourse21/$', modifyCourse21),
+    (r'^deleteCourse/$', deleteCourse),
 
     (r'^css/(?P<path>.*)$','django.views.static.serve',
     	{'document_root': os.path.join(os.path.dirname(__file__),'templates/css').replace('\\','/') }

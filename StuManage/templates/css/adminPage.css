@@ -132,3 +132,75 @@
 .deleteAccount div{
 	margin: 2px;
 }
+.modify1{
+	width: 290px;
+	height: 500px;
+	border: 5px solid #CCCC33;
+	margin: 5px;
+	float: left;
+}
+.modify1 h1{
+	font: bolder 30px/30px "Times New Roman",serif;
+	text-align: center;
+	color: #990000;
+}
+.modifyCourses{
+	width: 200px;
+	position: relative;
+	top: 80px;
+	left: 20px;
+	border: 2px solid #DDDDDD;
+}
+.modifyCourses div{
+	margin: 2px;
+}
+.modifyCourses p{
+	font: bolder 15px/15px "Times New Roman",serif;
+	text-align: center;
+	color: #990000;
+}
+.modifyCourses span{
+	font: bolder 15px/15px "Times New Roman",serif;
+	color: #990000;
+	text-align: center;
+}
+#showCoursedetail{
+	width: 200px;
+	position: relative;
+	top: 100px;
+	left: 20px;
+	border: 2px solid #DDDDDD;
+}
+#showCoursedetail span{
+	font: bolder 15px/15px "Times New Roman",serif;
+	color: #990000;
+}
+.modify2{
+	width: 510px;
+	height: 500px;
+	border: 5px solid #CCCC33;
+	margin: 5px;
+	float: left;
+}
+.modify2 h1{
+	font: bolder 30px/30px "Times New Roman",serif;
+	text-align: center;
+	color: #990000;
+}
+#deleteCourse{
+	width: 200px;
+	border: 2px solid #DDDDDD;
+	position: relative;
+	margin-right: 60px;
+	top: -180px;
+	float: right;
+}
+#deleteCourse h1{
+	font: bolder 15px/15px "Times New Roman",serif;
+	text-align: center;
+	color: #990000;
+}
+#deleteCourse span{
+	font: bolder 15px/15px "Times New Roman",serif;
+	color: #990000;
+}

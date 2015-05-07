@@ -21,20 +21,30 @@
     				$scope.right1=true;
     				$scope.right2=false;
                      $scope.right3=false;
+                     $scope.right4=false;
     				$scope.basicInfo=function(){
     					$scope.right1=true;
     					$scope.right2=false;
                           $scope.right3=false;
+                          $scope.right4=false;
     				}
     				$scope.addAccount=function(){
     					$scope.right1=false;
     					$scope.right2=true;
                           $scope.right3=false;
+                          $scope.right4=false;
     				}
                     $scope.deleteAccount=function(){
                           $scope.right1=false;
                           $scope.right2=false;
                           $scope.right3=true;
+                          $scope.right4=false;
+                    }
+                    $scope.modifyCourse=function(){
+                          $scope.right1=false;
+                          $scope.right2=false;
+                          $scope.right3=false;
+                          $scope.right4=true;
                     }
 
     				$scope.mess='Passwords are not the same';
@@ -143,6 +153,9 @@
     						</li>
                                <li class="nav">
                                     <button ng-click="deleteAccount()">Delete Account</button>
+                               </li>
+                               <li class="nav">
+                                    <button ng-click="modifyCourse()">Modify Course</button>
                                </li>
     					</ul>
     				</div>
@@ -332,6 +345,8 @@
                                 </div>
                      </div>
     			</div>
+
+                <!-- Delete Account Page -->
                 <div id="right3" ng-show="right3">
                     <div class="delete">
                           <h1>Administer</h1>
@@ -395,6 +410,114 @@
                                 </form>
                           </div>
                     </div>
+                </div>
+                
+                <!-- Modify Course Page -->
+                <div id="right4" ng-show="right4">
+                      <div class="modify1">
+                            <h1>Add Course</h1>
+                            <div class="modifyCourses">
+                                  <form action="/modifyCourse1/" method="POST">
+                                        {% csrf_token %}
+                                        {{MESSAGE1}}
+                                        <div>
+                                              <span>Course Name:</span>
+                                              <input type="text" name="courseName" placeholder="course name" required />
+                                        </div>
+                                        <div>
+                                              <span>Course Credit:</span>
+                                              <input type="number" name="courseCredit" placeholder="course credit" min=0 max=6 required />
+                                        </div>
+                                        <div>
+                                              <span>Course Hour:</span>
+                                              <input type="number" name="courseHour" placeholder="course hour" min=0 required />
+                                        </div>
+                                        <div>
+                                              <span>Course Start:</span>
+                                              <input type="datetime" name="courseStart" placeholder="datetime" required  />
+                                        </div>
+                                        <div>
+                                              <span>Course People:</span>
+                                              <input type="number" name="coursePeople" placeholder="course people" min=0 default="0" required />
+                                        </div>
+                                        <input type="hidden" name="username" value="{{username}}" />
+                                        <div>
+                                              <input type="submit" value="Submit" />
+                                        </div>
+                                  </form>
+                            </div>
+                            
+                      </div>
+                      <div class="modify2">
+                            <h1>Modify Course</h1>
+                            <div class="modifyCourses">
+                                  <form action="/modifyCourse2/" method="POST">
+                                        {% csrf_token %}
+                                        <p>modify course</p>
+                                        <div>
+                                              <span>course name:</span>
+                                              <select name="courseName">
+                                                      <option value="//course//" ng-repeat="course in courses">
+                                                             //course//
+                                                      </option>
+                                              </select>
+                                        </div>
+                                        <input type="hidden" name="username" value="{{username}}" />
+                                        <div>
+                                              <input type="submit" value="Submit" />
+                                        </div>
+                                  </form>
+                            </div>
+
+                            <div id="showCoursedetail">
+                                  <form action="/modifyCourse21/" method="POST">
+                                        {% csrf_token %}
+                                        <div>
+                                              <span>Course Name:</span>
+                                              <input type="text" value="{{course.courseName}}" name="courseName" readonly="readonly" />
+                                        </div>
+                                        <div>
+                                              <span>Course Credit:</span>
+                                              <input type="number" name="courseCredit" placeholder="course credit" value="{{course.courseCredit}}" min=0 max=6 required />
+                                        </div>
+                                        <div>
+                                              <span>Course Hour:</span>
+                                              <input type="number" name="courseHour" placeholder="course hour" value="{{course.courseHour}}" min=0 required />
+                                        </div>
+                                        <div>
+                                              <span>Course Start:</span>
+                                              <input type="datetime" name="courseStart" placeholder="datetime" value="{{course.courseStart|date:"Y-m-d H:i"}}" required  />
+                                        </div>
+                                        <div>
+                                              <span>Course People:</span>
+                                              <input type="number" name="coursePeople" placeholder="course people" value="{{course.coursePeople}}" min=0 default="0" required />
+                                        </div>
+                                        <input type="hidden" name="username" value="{{username}}" />
+                                        <div>
+                                              <input type="submit" value="Submit" />
+                                        </div>
+                                  </form>  
+                            </div>
+
+                            <div id="deleteCourse">
+                                  <form action="/deleteCourse/" method="POST">
+                                        {% csrf_token %}
+                                        <h1>delete course</h1>
+                                        <div>
+                                              <span>course name:</span>
+                                              <select name="courseName">
+                                                      <option value="//course//" ng-repeat="course in courses">
+                                                             //course//
+                                                      </option>
+                                              </select>
+                                        </div>
+                                        <input type="hidden" name="username" value="{{username}}" />
+                                        <div>
+                                              <input type="submit" value="Submit" />
+                                        </div>
+                                  </form>
+                            </div>
+                      </div>
                 </div>
     		</div>
     	</div>

@@ -476,3 +476,170 @@ def deleteStudent(request):
 	student_list=simplejson.dumps(studentList)
 
 	return render_to_response('adminPage.html', {'username':username, 'courseList':course_list, 'adminerList':adminer_list, 'teacherList':teacher_list, 'studentList':student_list},context_instance=RequestContext(request))
+
+# modify courses: add course
+def modifyCourse1(request):
+	username=request.POST.get('username')
+	courseName=request.POST.get('courseName')
+	MESSAGE=''
+
+	if Course.objects.filter(courseName=courseName).count()==0:
+		courseCredit=request.POST.get('courseCredit')
+		courseHour=request.POST.get('courseHour')
+		courseStart=request.POST.get('courseStart')
+		coursePeople=request.POST.get('coursePeople')
+		p=Course(courseName=courseName, courseCredit=courseCredit, courseHour=courseHour, courseStart=courseStart, coursePeople=coursePeople)
+		p.save()
+		MESSAGE='add successful'
+	else:
+		MESSAGE='fail'
+
+	#obtain all the courses name
+	courseList=[]
+	courses=Course.objects.all().values_list('courseName', flat=True)
+	for course in courses:
+		courseList.append(course)
+	course_list=simplejson.dumps(courseList)
+
+	#obtain all administer
+	adminList=[]
+	adminers=Adminer.objects.all().values_list('username', flat=True)
+	for adminer in adminers:
+		adminList.append(adminer)
+	adminer_list=simplejson.dumps(adminList)
+
+	#obtain all teacher
+	teacherList=[]
+	teachers=Teacher.objects.all().values_list('teacherId', flat=True)
+	for teacher in teachers:
+		teacherList.append(teacher)
+	teacher_list=simplejson.dumps(teacherList)
+
+	#obtain all student
+	studentList=[]
+	students=Student.objects.all().values_list('studentId', flat=True)
+	for student in students:
+		studentList.append(student)
+	student_list=simplejson.dumps(studentList)
+
+	return render_to_response('adminPage.html', {'MESSAGE1':MESSAGE,'username':username, 'courseList':course_list, 'adminerList':adminer_list, 'teacherList':teacher_list, 'studentList':student_list},context_instance=RequestContext(request))
+
+# modify courses: show course
+def modifyCourse2(request):
+	courseName=request.POST.get('courseName')
+	username=request.POST.get('username')
+
+	p=Course.objects.all().get(courseName=courseName)
+
+	#obtain all the courses name
+	courseList=[]
+	courses=Course.objects.all().values_list('courseName', flat=True)
+	for course in courses:
+		courseList.append(course)
+	course_list=simplejson.dumps(courseList)
+
+	#obtain all administer
+	adminList=[]
+	adminers=Adminer.objects.all().values_list('username', flat=True)
+	for adminer in adminers:
+		adminList.append(adminer)
+	adminer_list=simplejson.dumps(adminList)
+
+	#obtain all teacher
+	teacherList=[]
+	teachers=Teacher.objects.all().values_list('teacherId', flat=True)
+	for teacher in teachers:
+		teacherList.append(teacher)
+	teacher_list=simplejson.dumps(teacherList)
+
+	#obtain all student
+	studentList=[]
+	students=Student.objects.all().values_list('studentId', flat=True)
+	for student in students:
+		studentList.append(student)
+	student_list=simplejson.dumps(studentList)
+
+	return render_to_response('adminPage.html', {'username':username, 'courseList':course_list, 'adminerList':adminer_list, 'teacherList':teacher_list, 'studentList':student_list, 'course':p},context_instance=RequestContext(request))
+
+#modify courses: modify course
+def modifyCourse21(request):
+	username=request.POST.get('username')
+	courseName=request.POST.get('courseName')
+	courseCredit=request.POST.get('courseCredit')
+	courseHour=request.POST.get('courseHour')
+	courseStart=request.POST.get('courseStart')
+	coursePeople=request.POST.get('coursePeople')
+
+	p=Course.objects.all().get(courseName=courseName)
+	p.courseCredit=courseCredit
+	p.courseHour=courseHour
+	p.courseStart=courseStart
+	p.coursePeople=coursePeople
+	p.save()
+
+	#obtain all the courses name
+	courseList=[]
+	courses=Course.objects.all().values_list('courseName', flat=True)
+	for course in courses:
+		courseList.append(course)
+	course_list=simplejson.dumps(courseList)
+
+	#obtain all administer
+	adminList=[]
+	adminers=Adminer.objects.all().values_list('username', flat=True)
+	for adminer in adminers:
+		adminList.append(adminer)
+	adminer_list=simplejson.dumps(adminList)
+
+	#obtain all teacher
+	teacherList=[]
+	teachers=Teacher.objects.all().values_list('teacherId', flat=True)
+	for teacher in teachers:
+		teacherList.append(teacher)
+	teacher_list=simplejson.dumps(teacherList)
+
+	#obtain all student
+	studentList=[]
+	students=Student.objects.all().values_list('studentId', flat=True)
+	for student in students:
+		studentList.append(student)
+	student_list=simplejson.dumps(studentList)
+
+	return render_to_response('adminPage.html', {'username':username, 'courseList':course_list, 'adminerList':adminer_list, 'teacherList':teacher_list, 'studentList':student_list, 'course':p},context_instance=RequestContext(request))
+
+#modify courses: delete course
+def deleteCourse(request):
+	username=request.POST.get('username')
+	courseName=request.POST.get('courseName')
+	p=Course.objects.all().get(courseName=courseName)
+	p.delete()
+
+	#obtain all the courses name
+	courseList=[]
+	courses=Course.objects.all().values_list('courseName', flat=True)
+	for course in courses:
+		courseList.append(course)
+	course_list=simplejson.dumps(courseList)
+
+	#obtain all administer
+	adminList=[]
+	adminers=Adminer.objects.all().values_list('username', flat=True)
+	for adminer in adminers:
+		adminList.append(adminer)
+	adminer_list=simplejson.dumps(adminList)
+
+	#obtain all teacher
+	teacherList=[]
+	teachers=Teacher.objects.all().values_list('teacherId', flat=True)
+	for teacher in teachers:
+		teacherList.append(teacher)
+	teacher_list=simplejson.dumps(teacherList)
+
+	#obtain all student
+	studentList=[]
+	students=Student.objects.all().values_list('studentId', flat=True)
+	for student in students:
+		studentList.append(student)
+	student_list=simplejson.dumps(studentList)
+
+	return render_to_response('adminPage.html', {'username':username, 'courseList':course_list, 'adminerList':adminer_list, 'teacherList':teacher_list, 'studentList':student_list},context_instance=RequestContext(request))
