@@ -106,3 +106,29 @@
 	font: bolder 12px/12px serif;
 	color: #FFCC00;
 }
+.delete{
+	width: 260px;
+	height: 500px;
+	border: 5px solid #CCCC33;
+	margin: 5px;
+	float: left;
+}
+.delete h1{
+	font: bolder 30px/30px "Times New Roman",serif;
+	text-align: center;
+	color: #990000;
+}
+.deleteAccount{
+	width: 200px;
+	position: relative;
+	top: 80px;
+	left: 20px;
+	border: 2px solid #DDDDDD;
+}
+.deleteAccount span{
+	font: bolder 12px/12px serif;
+	color: #FFCC00;
+}
+.deleteAccount div{
+	margin: 2px;
+}

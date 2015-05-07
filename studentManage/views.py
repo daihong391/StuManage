@@ -241,7 +241,8 @@ def addAccount3(request):
 
 #modify password for administer
 def modifyPassword1(request):
-	username=request.POST.get('user1')
+	username=request.POST.get('username')
+	user1=request.POST.get('user1')
 	newPassword=request.POST.get('pass11')
 
 	#obtain all the courses name
@@ -272,8 +273,8 @@ def modifyPassword1(request):
 		studentList.append(student)
 	student_list=simplejson.dumps(studentList)
 
-	if Adminer.objects.filter(username=username):
-		p=Adminer.objects.get(username=username)
+	if Adminer.objects.filter(username=user1):
+		p=Adminer.objects.get(username=user1)
 		p.password=newPassword
 		p.save()
 
@@ -281,7 +282,8 @@ def modifyPassword1(request):
 
 #modify password for teacher
 def modifyPassword2(request):
-	username=request.POST.get('user2')
+	username=request.POST.get('username')
+	user2=request.POST.get('user2')
 	newPassword=request.POST.get('pass21')
 
 	#obtain all the courses name
@@ -312,8 +314,8 @@ def modifyPassword2(request):
 		studentList.append(student)
 	student_list=simplejson.dumps(studentList)
 
-	if Teacher.objects.filter(teacherId=username):
-		p=Teacher.objects.get(teacherId=username)
+	if Teacher.objects.filter(teacherId=user2):
+		p=Teacher.objects.get(teacherId=user2)
 		p.teacherPassword=newPassword
 		p.save()
 
@@ -321,7 +323,8 @@ def modifyPassword2(request):
 
 #modify password for student
 def modifyPassword3(request):
-	username=request.POST.get('user3')
+	username=request.POST.get('username')
+	user3=request.POST.get('user3')
 	newPassword=request.POST.get('pass31')
 
 	#obtain all the courses name
@@ -356,5 +359,120 @@ def modifyPassword3(request):
 		p=Student.objects.get(studentId=username)
 		p.studentPassword=newPassword
 		p.save()
+
+	return render_to_response('adminPage.html', {'username':username, 'courseList':course_list, 'adminerList':adminer_list, 'teacherList':teacher_list, 'studentList':student_list},context_instance=RequestContext(request))
+
+# delete administer account
+def deleteAdmin(request):
+	username=request.POST.get('username')
+	adminName=request.POST.get('user1')
+
+	if username != adminName:
+		p=Adminer.objects.get(username=adminName)
+		p.delete()
+
+	#obtain all the courses name
+	courseList=[]
+	courses=Course.objects.all().values_list('courseName', flat=True)
+	for course in courses:
+		courseList.append(course)
+	course_list=simplejson.dumps(courseList)
+
+	#obtain all administer
+	adminList=[]
+	adminers=Adminer.objects.all().values_list('username', flat=True)
+	for adminer in adminers:
+		adminList.append(adminer)
+	adminer_list=simplejson.dumps(adminList)
+
+	#obtain all teacher
+	teacherList=[]
+	teachers=Teacher.objects.all().values_list('teacherId', flat=True)
+	for teacher in teachers:
+		teacherList.append(teacher)
+	teacher_list=simplejson.dumps(teacherList)
+
+	#obtain all student
+	studentList=[]
+	students=Student.objects.all().values_list('studentId', flat=True)
+	for student in students:
+		studentList.append(student)
+	student_list=simplejson.dumps(studentList)
+
+	return render_to_response('adminPage.html', {'username':username, 'courseList':course_list, 'adminerList':adminer_list, 'teacherList':teacher_list, 'studentList':student_list},context_instance=RequestContext(request))
+
+# delete teacher account
+def deleteTeacher(request):
+	username=request.POST.get('username')
+	teacherName=request.POST.get('user2')
+
+	p=Teacher.objects.get(teacherId=teacherName)
+	p.delete()
+
+	#obtain all the courses name
+	courseList=[]
+	courses=Course.objects.all().values_list('courseName', flat=True)
+	for course in courses:
+		courseList.append(course)
+	course_list=simplejson.dumps(courseList)
+
+	#obtain all administer
+	adminList=[]
+	adminers=Adminer.objects.all().values_list('username', flat=True)
+	for adminer in adminers:
+		adminList.append(adminer)
+	adminer_list=simplejson.dumps(adminList)
+
+	#obtain all teacher
+	teacherList=[]
+	teachers=Teacher.objects.all().values_list('teacherId', flat=True)
+	for teacher in teachers:
+		teacherList.append(teacher)
+	teacher_list=simplejson.dumps(teacherList)
+
+	#obtain all student
+	studentList=[]
+	students=Student.objects.all().values_list('studentId', flat=True)
+	for student in students:
+		studentList.append(student)
+	student_list=simplejson.dumps(studentList)
+
+	return render_to_response('adminPage.html', {'username':username, 'courseList':course_list, 'adminerList':adminer_list, 'teacherList':teacher_list, 'studentList':student_list},context_instance=RequestContext(request))
+
+# delete student account
+def deleteStudent(request):
+	username=request.POST.get('username')
+	studentName=request.POST.get('user3')
+
+	p=Student.objects.get(studentId=studentName)
+	p.delete()
+
+	#obtain all the courses name
+	courseList=[]
+	courses=Course.objects.all().values_list('courseName', flat=True)
+	for course in courses:
+		courseList.append(course)
+	course_list=simplejson.dumps(courseList)
+
+	#obtain all administer
+	adminList=[]
+	adminers=Adminer.objects.all().values_list('username', flat=True)
+	for adminer in adminers:
+		adminList.append(adminer)
+	adminer_list=simplejson.dumps(adminList)
+
+	#obtain all teacher
+	teacherList=[]
+	teachers=Teacher.objects.all().values_list('teacherId', flat=True)
+	for teacher in teachers:
+		teacherList.append(teacher)
+	teacher_list=simplejson.dumps(teacherList)
+
+	#obtain all student
+	studentList=[]
+	students=Student.objects.all().values_list('studentId', flat=True)
+	for student in students:
+		studentList.append(student)
+	student_list=simplejson.dumps(studentList)
 
 	return render_to_response('adminPage.html', {'username':username, 'courseList':course_list, 'adminerList':adminer_list, 'teacherList':teacher_list, 'studentList':student_list},context_instance=RequestContext(request))

@@ -20,14 +20,22 @@
     			app.controller('DemoController', function($scope){
     				$scope.right1=true;
     				$scope.right2=false;
+                     $scope.right3=false;
     				$scope.basicInfo=function(){
     					$scope.right1=true;
     					$scope.right2=false;
+                          $scope.right3=false;
     				}
     				$scope.addAccount=function(){
     					$scope.right1=false;
     					$scope.right2=true;
+                          $scope.right3=false;
     				}
+                    $scope.deleteAccount=function(){
+                          $scope.right1=false;
+                          $scope.right2=false;
+                          $scope.right3=true;
+                    }
 
     				$scope.mess='Passwords are not the same';
     				$scope.message=false;
@@ -133,6 +141,9 @@
     						<li class="nav">
     							<button ng-click="addAccount()">Add Account</button>
     						</li>
+                               <li class="nav">
+                                    <button ng-click="deleteAccount()">Delete Account</button>
+                               </li>
     					</ul>
     				</div>
     			</div>
@@ -188,135 +199,203 @@
     						</form>
     					</div>
 
-                                                    <div class="modifyPassword">
-                                                               <form action="/modifyPassword1/" method="POST">
-                                                                         {% csrf_token %}
-                                                                         <div ng-show="NOTICE1">//notice1//</div>
-                                                                         <div>
-                                                                                    <span>username:</span>
-                                                                                    <select name="user1">
-                                                                                              <option value="//adminer//" ng-repeat="adminer in adminers">
-                                                                                                        //adminer//
-                                                                                              </option>
-                                                                                    </select>
-                                                                         </div>
-                                                                         <div>
-                                                                                   <input type="password" placeholder="New Password" ng-model="pass11" name="pass11" />
-                                                                         </div>
-                                                                         <div>
-                                                                                   <input type="password" placeholder="New Password again" ng-model="pass12" name="pass12" />
-                                                                         </div>
-                                                                         <input type="submit" value="Submit" />
-                                                               </form>
-                                                    </div>
+                          <div class="modifyPassword">
+                                <form action="/modifyPassword1/" method="POST">
+                                     {% csrf_token %}
+                                     <div ng-show="NOTICE1">//notice1//</div>
+                                     <div>
+                                          <span>username:</span>
+                                          <select name="user1">
+                                                <option value="//adminer//" ng-repeat="adminer in adminers">
+                                                    //adminer//
+                                                </option>
+                                          </select>
+                                     </div>
+                                     <div>
+                                           <input type="password" placeholder="New Password" ng-model="pass11" name="pass11" />
+                                     </div>
+                                     <div>
+                                           <input type="password" placeholder="New Password again" ng-model="pass12" name="pass12" />
+                                     </div>
+                                     <input type="hidden" name="username" value="{{username}}" />
+                                      <input type="submit" value="Submit" />
+                                  </form>
+                               </div>
     				</div>
     				<div class="createAccount">
     					<h1>Teacher</h1>
-                                                    <div class="addAccount">
+                          <div class="addAccount">
     					           <form action="/addAccount2/" method="POST">
-                                                                         {% csrf_token %}
-                                                                         <ul>
-                                                                                    {{MESSAGE2}}
-                                                                                    <li>
-                                                                                              <input type="text" placeholder="Teacher Id" name="TeacherId" required />
-                                                                                    </li>
-                                                                                    <li>
-                                                                                              <input type="text" placeholder="Teacher Name" name="TeacherName" required />
-                                                                                    </li>
-                                                                                    <li>
-                                                                                              <select name="courseName">
-                                                                                                        <option value="//course//" ng-repeat="course in courses">
-                                                                                                                  //course//
-                                                                                                        </option>
-                                                                                              </select>
-                                                                                    </li>
-                                                                                    <li>
-                                                                                              <input type="password" placeholder="password" name="teacherPassword" required />
-                                                                                    </li>
-                                                                                    <input type="hidden" name="username" value="{{username}}" />
-                                                                                    <li>
-                                                                                               <input type="submit" value="submit" />
-                                                                                    </li>
-                                                                         </ul>
-                                                               </form>
-                                                    </div>
+                                               {% csrf_token %}
+                                               <input type="hidden" name="username" value="{{username}}" />
+                                               <ul>
+                                                          {{MESSAGE2}}
+                                                          <li>
+                                                                    <input type="text" placeholder="Teacher Id" name="TeacherId" required />
+                                                          </li>
+                                                           <li>
+                                                                     <input type="text" placeholder="Teacher Name" name="TeacherName" required />
+                                                           </li>
+                                                            <li>
+                                                                       <select name="courseName">
+                                                                                   <option value="//course//" ng-repeat="course in courses">
+                                                                                              //course//
+                                                                                   </option>
+                                                                        </select>
+                                                            </li>
+                                                            <li>
+                                                                      <input type="password" placeholder="password" name="teacherPassword" required />
+                                                            </li>
+                                                            <input type="hidden" name="username" value="{{username}}" />
+                                                            <li>
+                                                                        <input type="submit" value="submit" />
+                                                            </li>
+                                                 </ul>
+                                       </form>
+                           </div>
 
-                                                    <div class="modifyPassword">
-                                                               <form action="/modifyPassword2/" method="POST">
-                                                                         {% csrf_token %}
-                                                                         <div ng-show="NOTICE2">//notice2//</div>
-                                                                         <div>
-                                                                                    <span>username:</span>
-                                                                                    <select name="user2">
-                                                                                              <option value="//teacher//" ng-repeat="teacher in teachers">
-                                                                                                        //teacher//
-                                                                                              </option>
-                                                                                    </select>
-                                                                         </div>
-                                                                         <div>
-                                                                                   <input type="password" placeholder="New Password" ng-model="pass21" name="pass21" />
-                                                                         </div>
-                                                                         <div>
-                                                                                   <input type="password" placeholder="New Password again" ng-model="pass22" name="pass22" />
-                                                                         </div>
-                                                                         <input type="submit" value="Submit" />
-                                                               </form>
+                            <div class="modifyPassword">
+                                          <form action="/modifyPassword2/" method="POST">
+                                                     {% csrf_token %}
+                                                     <div ng-show="NOTICE2">//notice2//</div>
+                                                     <div>
+                                                               <span>username:</span>
+                                                               <select name="user2">
+                                                                         <option value="//teacher//" ng-repeat="teacher in teachers">
+                                                                                    //teacher//
+                                                                          </option>
+                                                                </select>
+                                                     </div>
+                                                    <div>
+                                                               <input type="password" placeholder="New Password" ng-model="pass21" name="pass21" />
                                                     </div>
+                                                    <div>
+                                                               <input type="password" placeholder="New Password again" ng-model="pass22" name="pass22" />
+                                                     </div>
+                                                     <input type="hidden" name="username" value="{{username}}" />
+                                                    <input type="submit" value="Submit" />
+                                          </form>
+                                </div>
     				</div>
-                                          <div class="createAccount">
-                                                    <h1>Student</h1>
-                                                    <div class="addAccount">
-                                                               <form action="/addAccount3/" method="POST">
-                                                                         {% csrf_token %}
-                                                                         <ul>
-                                                                                    {{MESSAGE3}}
-                                                                                    <li>
-                                                                                              <input type="text" placeholder="student Id" name="studentId" required />
-                                                                                    </li>
-                                                                                    <li>
-                                                                                              <input type="text" placeholder="student Name" name="studentName" required />
-                                                                                    </li>
-                                                                                    <li>
-                                                                                              <select name="courseName">
-                                                                                                        <option value="//course//" ng-repeat="course in courses">
-                                                                                                                  //course//
-                                                                                                        </option>
-                                                                                              </select>
-                                                                                    </li>
-                                                                                    <li>
-                                                                                              <input type="password" placeholder="password" name="studentPassword" required />
-                                                                                    </li>
-                                                                                    <input type="hidden" name="username" value="{{username}}" />
-                                                                                    <li>
-                                                                                               <input type="submit" value="submit" />
-                                                                                    </li>
-                                                                         </ul>
-                                                               </form>
-                                                    </div>
+                     <div class="createAccount">
+                                 <h1>Student</h1>
+                                 <div class="addAccount">
+                                           <form action="/addAccount3/" method="POST">
+                                                     {% csrf_token %}
+                                                     <ul>
+                                                               {{MESSAGE3}}
+                                                               <li>
+                                                                         <input type="text" placeholder="student Id" name="studentId" required />
+                                                               </li>
+                                                               <li>
+                                                                         <input type="text" placeholder="student Name" name="studentName" required />
+                                                               </li>
+                                                               <li>
+                                                                         <select name="courseName">
+                                                                                    <option value="//course//" ng-repeat="course in courses">
+                                                                                              //course//
+                                                                                    </option>
+                                                                         </select>
+                                                               </li>
+                                                               <li>
+                                                                         <input type="password" placeholder="password" name="studentPassword" required />
+                                                               </li>
+                                                               <input type="hidden" name="username" value="{{username}}" />
+                                                               <li>
+                                                                         <input type="submit" value="submit" />
+                                                               </li>
+                                                    </ul>
+                                          </form>
+                               </div>
 
-                                                    <div class="modifyPassword">
-                                                               <form action="/modifyPassword3/" method="POST">
-                                                                         {% csrf_token %}
-                                                                         <div ng-show="NOTICE3">//notice3//</div>
-                                                                         <div>
-                                                                                    <span>username:</span>
-                                                                                    <select name="user3">
-                                                                                              <option value="//student//" ng-repeat="student in students">
-                                                                                                        //student//
-                                                                                              </option>
-                                                                                    </select>
-                                                                         </div>
-                                                                         <div>
-                                                                                   <input type="password" placeholder="New Password" ng-model="pass31" name="pass31" />
-                                                                         </div>
-                                                                         <div>
-                                                                                   <input type="password" placeholder="New Password again" ng-model="pass32" name="pass32" />
-                                                                         </div>
-                                                                         <input type="submit" value="Submit" />
-                                                               </form>
+                                <div class="modifyPassword">
+                                          <form action="/modifyPassword3/" method="POST">
+                                                    {% csrf_token %}
+                                                    <div ng-show="NOTICE3">//notice3//</div>
+                                                    <div>
+                                                               <span>username:</span>
+                                                               <select name="user3">
+                                                                          <option value="//student//" ng-repeat="student in students">
+                                                                                    //student//
+                                                                         </option>
+                                                               </select>
                                                     </div>
-                                          </div>
+                                                    <div>
+                                                               <input type="password" placeholder="New Password" ng-model="pass31" name="pass31" />
+                                                     </div>
+                                                     <div>
+                                                               <input type="password" placeholder="New Password again" ng-model="pass32" name="pass32" />
+                                                     </div>
+                                                     <input type="hidden" name="username" value="{{username}}" />
+                                                    <input type="submit" value="Submit" />
+                                          </form>
+                                </div>
+                     </div>
     			</div>
+                <div id="right3" ng-show="right3">
+                    <div class="delete">
+                          <h1>Administer</h1>
+                          <div class="deleteAccount">
+                                <form action="/deleteAdmin/" method="POST">
+                                      {% csrf_token %}
+                                      <div>
+                                                 <span>username:</span>
+                                                 <select name="user1">
+                                                          <option value="//adminer//" ng-repeat="adminer in adminers">
+                                                                  //adminer//
+                                                          </option>
+                                                  </select>
+                                        </div>
+                                        <input type="hidden" name="username" value="{{username}}" />
+                                        <div>
+                                                  <input type="submit" value="Submit" />
+                                        </div>
+                                </form>
+                          </div>
+                    </div>
+                    <div class="delete">
+                          <h1>Teacher</h1>
+                          <div class="deleteAccount">
+                                <form action="/deleteTeacher/" method="POST">
+                                        {% csrf_token %}
+                                        <div>
+                                                 <span>username:</span>
+                                                 <select name="user2">
+                                                          <option value="//teacher//" ng-repeat="teacher in teachers">
+                                                                  //teacher//
+                                                          </option>
+                                                  </select>
+
+                                        </div>
+                                        <input type="hidden" name="username" value="{{username}}" />
+                                        <div>
+                                                  <input type="submit" value="Submit" />
+                                        </div>
+                                </form>
+                          </div>
+                    </div>
+                    <div class="delete">
+                          <h1>Student</h1>
+                          <div class="deleteAccount">
+                                <form action="/deleteStudent/" method="POST">
+                                        {% csrf_token %}
+                                        <div>
+                                                 <span>username:</span>
+                                                 <select name="user3">
+                                                          <option value="//student//" ng-repeat="student in students">
+                                                                  //student//
+                                                          </option>
+                                                  </select>
+
+                                        </div>
+                                        <input type="hidden" name="username" value="{{username}}" />
+                                        <div>
+                                                  <input type="submit" value="Submit" />
+                                        </div>
+                                </form>
+                          </div>
+                    </div>
+                </div>
     		</div>
     	</div>
     </body>
