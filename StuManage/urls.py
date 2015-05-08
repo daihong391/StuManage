@@ -1,12 +1,14 @@
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
+admin.autodiscover
 from studentManage.views import mainpage, changePasswd, addAccount1, addAccount2, addAccount3, modifyPassword1, modifyPassword2, modifyPassword3, deleteAdmin, deleteTeacher, deleteStudent, modifyCourse1, modifyCourse2, modifyCourse21, deleteCourse
-import settings,os
+import os
 
 urlpatterns = patterns('',
     # Examples:
     # url(r'^$', 'StuManage.views.home', name='home'),
     # url(r'^blog/', include('blog.urls')),
+    # (r'^admin/$', include(admin.site.urls)),
     (r'^mainpage/$', mainpage),
     (r'^changePasswd/$', changePasswd),
     (r'^addAccount1/$', addAccount1),

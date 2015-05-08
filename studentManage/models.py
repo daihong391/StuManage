@@ -7,7 +7,7 @@ class Adminer(models.Model):
 	password=models.CharField(max_length=30)
 
 	def __unicode__(self):
-        		return self.username
+        		return u'%s: %s' % (self.username, self.password)
 
 class Course(models.Model):
 	courseName=models.CharField(max_length=50, default="", unique=True)
