@@ -471,4 +471,3 @@ delete accounts, and manage courses.
 #### Figure 9:
 ![Admin Page](https://github.com/daihong391/StuManage/raw/master/images/administerManageButton.PNG)
 
-#TEST
