@@ -17,6 +17,10 @@ The above figure shows the design-flow of the course-selection-system, and it is
 The corresponding databases used in the project, is showing as above, and it is divided into  
 4 parts, Administer, Teacher, Student and Course.
 
+### 1.1 Environment
+This project is developing on Windows 8, and the edition of Django and Python are 1.7.8 and 3.4.3,  
+respectively.
+
 ## 2. Details
 ### 2.1 HTML
 #### 2.1.1 Main Page
@@ -45,6 +49,23 @@ delete accounts, and manage courses.
 
 #### Figure 11:
 ![Admin Page](https://github.com/daihong391/StuManage/raw/master/images/adminModifyCourses.PNG)
+
+#### 2.1.3 Teacher Page
+This section for teacher is divided into two parts: one page for displaying basic information, another for  
+modifying account information. 
+
+#### Figure 15:
+![Teacher Page](https://github.com/daihong391/StuManage/raw/master/images/TEACHER_BASIC.PNG)
+
+#### Figure 16:
+![TEACHER Page](https://github.com/daihong391/StuManage/raw/master/images/TEACHER_MODIFY.PNG)
+
+#### 2.1.4 Student Page
+#### Figure 17:
+![Student Page](https://github.com/daihong391/StuManage/raw/master/images/STUDENT_BASIC.PNG)
+
+#### Figure 18:
+![Student Page](https://github.com/daihong391/StuManage/raw/master/images/STUDENT_MODIFY.PNG)
 
 ### 2.2 Database
 #### 2.2.1 Administer Table
@@ -471,3 +492,13 @@ delete accounts, and manage courses.
 #### Figure 9:
 ![Admin Page](https://github.com/daihong391/StuManage/raw/master/images/administerManageButton.PNG)
 
+
+#### 3.4.2 User Part
+* Entering the correct username and password, you can enter either the teacher page or student page  
+  including basic information through the login page Figure 4.
+* Both student and teacher part, they include one page for showing basic information, and another for  
+  modifying account as Figure 15, 16 for teacher and Figure 17,18 for student.
+* By click buttons in Figure 19, you can between two pages: the basic and the modify.
+
+#### Figure 19:
+![Switch Button](https://github.com/daihong391/StuManage/raw/master/images/SWITCH_BUTTON.PNG)
