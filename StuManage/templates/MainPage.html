@@ -39,12 +39,13 @@
     			</div>
     			<div id="middle1" ng-show="middle1">
     				<div class="middle-form">
-    					<form action="/mainpage/" method="POST" >
+    					<form action="/mainpage1/" method="POST" >
     						{% csrf_token %}
     						<h1>Student/Teacher Login Page</h1>
     						<br />
-    						{{form.username}}
-    						{{form.passwd}}
+    						{{form1.username}}
+    						{{form1.passwd}}
+                                                              {{form1.rank}}
     						<br />
     						<input type="submit" value=" Log in" size="15" />
     					</form>

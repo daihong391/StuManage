@@ -6,7 +6,7 @@ class Adminer(models.Model):
 	username=models.EmailField(max_length=30, default="", unique=True)
 	password=models.CharField(max_length=30)
 
-	def __unicode__(self):
+	def __str__(self):
         		return u'%s: %s' % (self.username, self.password)
 
 class Course(models.Model):
@@ -16,7 +16,7 @@ class Course(models.Model):
 	courseStart=models.DateTimeField()
 	coursePeople=models.PositiveIntegerField(default=0)
 
-	def __unicode__(self):
+	def __str__(self):
 		return self.courseName
 
 class Teacher(models.Model):
@@ -25,7 +25,7 @@ class Teacher(models.Model):
 	course=models.ForeignKey(Course)
 	teacherPassword=models.CharField(max_length=30, default="")
 
-	def __unicode__(self):
+	def __str__(self):
 		return "%s: %s" % (self.teacherId, self.teacherName)
 
 class Student(models.Model):
@@ -34,5 +34,5 @@ class Student(models.Model):
 	course=models.ForeignKey(Course)
 	studentPassword=models.CharField(max_length=30, default="")
 
-	def __unicode__(self):
+	def __str__(self):
 		return "%s: %s" % (self.studentId, self.studentName)

@@ -1,9 +1,155 @@
 from django.shortcuts import render_to_response
 from django.template import RequestContext
-from .forms import loginForm
+from .forms import loginForm,userLoginForm
 from studentManage.models import Adminer,Course,Teacher,Student
 from django.db.models import Count,Q
 import json as simplejson
+
+def studentModify(request):
+	studentId=request.POST.get('studentId')
+	studentName=request.POST.get('studentName')
+	studentPassword=request.POST.get('studentPassword')
+	courseName=request.POST.get('courseName')[7:]
+
+	p=Student.objects.get(studentId=studentId)
+	p.studentName=studentName
+	p.studentPassword=studentPassword
+	course=Course.objects.get(courseName=courseName)
+	p.course=course
+	p.save()
+
+
+	#obtain all the courses name
+	courseList=[]
+	courses=Course.objects.all().values_list('courseName', flat=True)
+	for course in courses:
+		courseList.append(course)
+	course_list=simplejson.dumps(courseList)
+
+	#obtain all administer
+	adminList=[]
+	adminers=Adminer.objects.all().values_list('username', flat=True)
+	for adminer in adminers:
+		adminList.append(adminer)
+	adminer_list=simplejson.dumps(adminList)
+
+	#obtain all teacher
+	teacherList=[]
+	teachers=Teacher.objects.all().values_list('teacherId', flat=True)
+	for teacher in teachers:
+		teacherList.append(teacher)
+	teacher_list=simplejson.dumps(teacherList)
+
+	#obtain all student
+	studentList=[]
+	students=Student.objects.all().values_list('studentId', flat=True)
+	for student in students:
+		studentList.append(student)
+	student_list=simplejson.dumps(studentList)
+
+	student=Student.objects.get(studentId=studentId)
+
+	return render_to_response('studentPage.html', {'student':student, 'username':studentId, 'courseList':course_list, 'adminerList':adminer_list, 'teacherList':teacher_list, 'studentList':student_list},context_instance=RequestContext(request))
+
+
+def teacherModify(request):
+	teacherId=request.POST.get('teacherId')
+	teacherName=request.POST.get('teacherName')
+	teacherPassword=request.POST.get('teacherPassword')
+	courseName=request.POST.get('courseName')[7:]
+
+	p=Teacher.objects.get(teacherId=teacherId)
+	p.teacherName=teacherName
+	p.teacherPassword=teacherPassword
+	course=Course.objects.get(courseName=courseName)
+	p.course=course
+	p.save()
+
+
+	#obtain all the courses name
+	courseList=[]
+	courses=Course.objects.all().values_list('courseName', flat=True)
+	for course in courses:
+		courseList.append(course)
+	course_list=simplejson.dumps(courseList)
+
+	#obtain all administer
+	adminList=[]
+	adminers=Adminer.objects.all().values_list('username', flat=True)
+	for adminer in adminers:
+		adminList.append(adminer)
+	adminer_list=simplejson.dumps(adminList)
+
+	#obtain all teacher
+	teacherList=[]
+	teachers=Teacher.objects.all().values_list('teacherId', flat=True)
+	for teacher in teachers:
+		teacherList.append(teacher)
+	teacher_list=simplejson.dumps(teacherList)
+
+	#obtain all student
+	studentList=[]
+	students=Student.objects.all().values_list('studentId', flat=True)
+	for student in students:
+		studentList.append(student)
+	student_list=simplejson.dumps(studentList)
+
+	teacher=Teacher.objects.get(teacherId=teacherId)
+
+	return render_to_response('teacherPage.html', {'teacher':teacher, 'username':teacherId, 'courseList':course_list, 'adminerList':adminer_list, 'teacherList':teacher_list, 'studentList':student_list},context_instance=RequestContext(request))
+
+
+def mainpage1(request):
+	if request.method=='POST':
+		form1=userLoginForm(request.POST)
+
+		if form1.is_valid():
+			rank=form1.cleaned_data['rank']
+			username=form1.cleaned_data['username']
+			passwd=form1.cleaned_data['passwd']
+
+			#obtain all the courses name
+			courseList=[]
+			courses=Course.objects.all().values_list('courseName', flat=True)
+			for course in courses:
+				courseList.append(course)
+			course_list=simplejson.dumps(courseList)
+
+			#obtain all administer
+			adminList=[]
+			adminers=Adminer.objects.all().values_list('username', flat=True)
+			for adminer in adminers:
+				adminList.append(adminer)
+			adminer_list=simplejson.dumps(adminList)
+
+			#obtain all teacher
+			teacherList=[]
+			teachers=Teacher.objects.all().values_list('teacherId', flat=True)
+			for teacher in teachers:
+				teacherList.append(teacher)
+			teacher_list=simplejson.dumps(teacherList)
+
+			#obtain all student
+			studentList=[]
+			students=Student.objects.all().values_list('studentId', flat=True)
+			for student in students:
+				studentList.append(student)
+			student_list=simplejson.dumps(studentList)
+
+			if rank=='0':
+				if Teacher.objects.filter(teacherId=username):
+					if Teacher.objects.filter(teacherPassword=passwd):
+						teacher=Teacher.objects.get(teacherId=username)
+						return render_to_response('teacherPage.html', {'teacher':teacher, 'username':username, 'courseList':course_list, 'adminerList':adminer_list, 'teacherList':teacher_list, 'studentList':student_list},context_instance=RequestContext(request))
+			else:
+				if Student.objects.filter(studentId=username):
+					if Student.objects.filter(studentPassword=passwd):
+						student=Student.objects.get(studentId=username)
+						return render_to_response('studentPage.html', {'student':student, 'username':username, 'courseList':course_list, 'adminerList':adminer_list, 'teacherList':teacher_list, 'studentList':student_list},context_instance=RequestContext(request))
+
+	form=loginForm()
+	form1=userLoginForm()
+	return render_to_response('MainPage.html', {'form':form, 'form1':form1},context_instance=RequestContext(request))
 
 # Create your views here.
 def mainpage(request):
@@ -50,7 +196,8 @@ def mainpage(request):
 					return render_to_response('adminPage.html', {'username':username, 'courseList':course_list, 'adminerList':adminer_list, 'teacherList':teacher_list, 'studentList':student_list},context_instance=RequestContext(request))
 
 	form=loginForm()
-	return render_to_response('MainPage.html', {'form':form},context_instance=RequestContext(request))
+	form1=userLoginForm()
+	return render_to_response('MainPage.html', {'form':form, 'form1':form1},context_instance=RequestContext(request))
 
 # Change Administer password
 def changePasswd(request):

@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<title>Teacher</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.0-rc.1/angular.min.js"></script>
+	<link rel="stylesheet" href="/css/teacherPage.css" />
+	<link rel="stylesheet" href="/css/reset.css" />
+</head>
+	<body ng-app="myApp">
+		<div id="container" ng-controller="DemoController as demo">
+			<script>
+				var app=angular.module('myApp', []);
+
+    				app.config(function($interpolateProvider) {
+    					$interpolateProvider.startSymbol('//');
+    					$interpolateProvider.endSymbol('//');
+  				});
+
+    				app.controller('DemoController', function($scope){
+    					$scope.right1=true;
+    					$scope.right2=false;
+
+    					$scope.basicInfo=function(){
+    						$scope.right1=true;
+    						$scope.right2=false;
+    					}
+    					$scope.modify=function(){
+    						$scope.right1=false;
+    						$scope.right2=true;
+    					}
+
+    					var courses=[];
+                                         	 	for(var i=0; i<{{courseList|safe}}.length; i++){
+                                                    	courses.push({{courseList|safe}}[i]);
+                                          	}
+                                          	$scope.courses=courses;
+
+
+                                          	$scope.myCourse='{{teacher.course.courseName}}';
+    				});
+			</script>
+
+			<div id="head">
+    				<p id="title"><span>UW</span>innipeg</p>
+    			</div>
+
+    			<div id="main">
+
+    				<div id="left">
+
+    					<div id="up">
+    						<ul>
+    							<li><span>{{username}}</span></li>
+    							<li class="nav">
+    								<button ng-click="basicInfo()">Basic Information</button>
+    							</li>
+    							<li class="nav">
+    								<button ng-click="modify()">Modify</button>
+    							</li>
+    						</ul>
+    					</div>
+
+    				</div>
+
+    				<div id="right1" ng-show="right1">
+    					<table border="1">
+    						<tr>
+    							<td>TeacherId:</td>
+    							<td> {{teacher.teacherId}} </td>
+    						</tr>
+    						<tr>
+    							<td>Teacher Name:</td>
+    							<td> {{teacher.teacherName}} </td>
+    						</tr>
+    						<tr>
+    							<td>Teacher Password</td>
+    							<td> {{teacher.teacherPassword}} </td>
+    						</tr>
+    						<tr>
+    							<td>Course</td>
+    							<td> {{teacher.course.courseName}} </td>
+    						</tr>
+    					</table>
+    				</div>
+
+    				<div id="right2" ng-show="right2">
+    					
+					<form action="/teacherModify/" method="POST">
+						{% csrf_token %}
+						<table border="1">
+    							<tr>
+    								<td>TeacherId:</td>
+    								<td>
+    									<input type="text" value="{{teacher.teacherId}}" name="teacherId" readonly="readonly" />
+    								</td>
+    							</tr>
+    							<tr>
+    								<td>Teacher Name:</td>
+    								<td>
+    									<input type="text" value="{{teacher.teacherName}}" name="teacherName" />
+    								</td>
+    							</tr>
+    							<tr>
+    								<td>Teacher Password</td>
+    								<td>
+    									<input type="text" value="{{teacher.teacherPassword}}" name="teacherPassword" />
+    								</td>
+    							</tr>
+    							<tr>
+    								<td>Course</td>
+    								<td>
+									<select ng-model="myCourse" ng-options="course for course in courses" name="courseName" >
+									</select>
+    								</td>
+    							</tr>
+    							<tr>
+    								<td colspan="2">
+    									<input type="submit" value="Submit" />
+    								</td>
+    							</tr>
+    						</table>
+					</form>
+
+    				</div>
+
+    			</div>
+
+		</div>
+	</body>

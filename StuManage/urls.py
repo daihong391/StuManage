@@ -2,6 +2,7 @@ from django.conf.urls import patterns, include, url
 from django.contrib import admin
 admin.autodiscover
 from studentManage.views import mainpage, changePasswd, addAccount1, addAccount2, addAccount3, modifyPassword1, modifyPassword2, modifyPassword3, deleteAdmin, deleteTeacher, deleteStudent, modifyCourse1, modifyCourse2, modifyCourse21, deleteCourse
+from studentManage.views import mainpage1, teacherModify, studentModify
 import os
 
 urlpatterns = patterns('',
@@ -9,6 +10,9 @@ urlpatterns = patterns('',
     # url(r'^$', 'StuManage.views.home', name='home'),
     # url(r'^blog/', include('blog.urls')),
     # (r'^admin/$', include(admin.site.urls)),
+    (r'^studentModify/$', studentModify),
+    (r'^teacherModify/$', teacherModify),
+    (r'^mainpage1/$', mainpage1),
     (r'^mainpage/$', mainpage),
     (r'^changePasswd/$', changePasswd),
     (r'^addAccount1/$', addAccount1),
